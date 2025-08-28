@@ -143,7 +143,7 @@ fun smsNotify(accountSid: String, authToken: String, phoneNumbers: List<String>,
             .creator(
                 toNumber,
                 fromNumber,
-                "Bibelgruppe den ${bibelgroupmeeting.date.format(dateFormatt)} påminnelse. Husk at det er bibelgruppe på onsdag! Tema: ${bibelgroupmeeting.theme}, Hos: ${bibelgroupmeeting.who}, Adresse: ${bibelgroupmeeting.address}, Kl: 19:30"
+                "Bibelgruppe den ${bibelgroupmeeting.date.format(dateFormatt)} påminnelse. Hos: ${bibelgroupmeeting.who}, Adresse: ${bibelgroupmeeting.address}, Kl: 19:30"
             )
             .create()
 
