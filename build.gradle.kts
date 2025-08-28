@@ -3,7 +3,7 @@ val javaVersion = 21
 val logbackVersion= "1.5.18"
 val logstashEncoderVersion = "8.1"
 val poiVersion = "5.4.1"
-val sendgridVersion = "4.10.3"
+val twilioVersion = "10.9.2"
 val junitJupiterVersion = "5.13.4"
 
 
@@ -29,7 +29,7 @@ repositories {
 
 dependencies {
     implementation("org.apache.poi:poi-ooxml:$poiVersion")
-    implementation("com.sendgrid:sendgrid-java:$sendgridVersion")
+    implementation("com.twilio.sdk:twilio:$twilioVersion")
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashEncoderVersion")

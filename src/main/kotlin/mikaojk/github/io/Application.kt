@@ -1,11 +1,8 @@
 package mikaojk.github.io
 
-import com.sendgrid.Method
-import com.sendgrid.Request
-import com.sendgrid.SendGrid
-import com.sendgrid.helpers.mail.Mail
-import com.sendgrid.helpers.mail.objects.Content
-import com.sendgrid.helpers.mail.objects.Email
+import com.twilio.Twilio
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import mikaojk.github.io.model.BibleGroupMeeting
 import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.CellType
@@ -31,18 +28,18 @@ fun main() {
     val bibleGroupMeetings = fetchBibleGroupMeetingFromGoogleSheets(environment.googleSheetXlsxUrl)
     val nearestFutureBibelGroupMeeting = nearestFutureBibelGroupMeeting(bibleGroupMeetings)
 
-    val emails: List<String> = environment.phoneNumbers.trim().split(",")
-    val allEmailsAreValid = checkEmails(emails)
+    val phoneNumbers: List<String> = environment.phoneNumbers.trim().split(",")
+    val allPhoneNumbersAreValid = checkPhoneNumbers(phoneNumbers)
 
-    if (allEmailsAreValid && nearestFutureBibelGroupMeeting != null && isFutureBibelGroupMeetingNextWeek(nearestFutureBibelGroupMeeting.date)) {
-        emailNotify(environment.sendgridApiKey, emails, nearestFutureBibelGroupMeeting)
+    if (allPhoneNumbersAreValid && nearestFutureBibelGroupMeeting != null && isFutureBibelGroupMeetingNextWeek(nearestFutureBibelGroupMeeting.date)) {
+        smsNotify(environment.accountSid, environment.authToken, phoneNumbers, nearestFutureBibelGroupMeeting)
     } else {
         log.info("No bible group meeting in scheduled")
     }
 
 }
 
-fun checkEmails(phoneNumbers: List<String>): Boolean {
+fun checkPhoneNumbers(phoneNumbers: List<String>): Boolean {
     for (phoneNumber in phoneNumbers) {
         if (!validatePhoneNumberRegex(phoneNumber)) {
             log.error("Invalid phoneNumber: $phoneNumber")
@@ -53,7 +50,7 @@ fun checkEmails(phoneNumbers: List<String>): Boolean {
 }
 
 fun validatePhoneNumberRegex(phoneNumber: String): Boolean {
-    val phoneNumberPattern = "^[\\d ]+$".toRegex()
+    val phoneNumberPattern = "^\\d+$".toRegex()
 
     return phoneNumberPattern.matches(phoneNumber) && phoneNumber.length == 11
 }
@@ -153,33 +150,19 @@ fun createHtmlContentInStringFormat(bibelgroupmeeting: BibleGroupMeeting): Strin
 
 }
 
-fun emailNotify(sendgridApiKey: String, emailAdresss: List<String>, bibelgroupmeeting: BibleGroupMeeting) {
-    emailAdresss.forEach { email ->
-        val from = Email("no-reply@joakim-taule-kartveit.no")
-        val subject = "Bibelgruppe den ${bibelgroupmeeting.date.format(dateFormatt)} påminnelse"
-        val to = Email(email)
-        val htmlContentStringFormat = createHtmlContentInStringFormat(bibelgroupmeeting)
-        val content = Content(
-            "text/html",
-            htmlContentStringFormat
+fun smsNotify(accountSid: String, authToken: String, phoneNumbers: List<String>, bibelgroupmeeting: BibleGroupMeeting) {
+
+    Twilio.init(accountSid, authToken)
+
+    val message: Message? = Message
+        .creator(
+            PhoneNumber("+15558675309"),
+            PhoneNumber("+15017250604"),
+            "This is the ship that made the Kessel Run in fourteen parsecs?"
         )
-        val mail = Mail(from, subject, to, content)
+        .create()
 
-        val endGrid = SendGrid(sendgridApiKey)
-        val request: Request = Request().apply {
-            method = Method.POST
-            endpoint = "mail/send"
-            body = mail.build()
-        }
 
-        val response = endGrid.api(request)
+    println(message?.sid)
 
-        if (response.statusCode != 202) {
-            log.info("Something went wrong with sending the email")
-            log.info("Status code ${response.statusCode}")
-            log.info("body code ${response.body}")
-        } else {
-            log.info("All good, email is sendt")
-        }
-    }
 }

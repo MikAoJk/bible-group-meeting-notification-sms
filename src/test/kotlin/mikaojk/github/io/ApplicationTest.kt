@@ -40,20 +40,20 @@ class ApplicationTest {
     }
 
     @Test
-    fun `Should check all emails and be valid`() {
+    fun `Should check all phoneNumbers and be valid`() {
         val environment = Environment()
-        val emails: List<String> = environment.emails.trim().split(",")
-        val allEmailsAreValid = checkEmails(emails)
+        val phoneNumbers: List<String> = environment.phoneNumbers.trim().split(",")
+        val allPhoneNumbersAreValid = checkPhoneNumbers(phoneNumbers)
 
-        assertEquals(true, allEmailsAreValid)
+        assertEquals(true, allPhoneNumbersAreValid)
     }
 
     @Test
-    fun `Should check all emails and find some invalids`() {
-        val emails: List<String> = listOf("joakim@gmai.com", "joaskim£gmail.com")
-        val allEmailsAreValid = checkEmails(emails)
+    fun `Should check all phonenumbers and find some invalids`() {
+        val phoneNumbers: List<String> = listOf("47249817", "j47249817")
+        val allPhoneNumbersAreValid = checkPhoneNumbers(phoneNumbers)
 
-        assertEquals(false, allEmailsAreValid)
+        assertEquals(false, allPhoneNumbersAreValid)
     }
 
 }
