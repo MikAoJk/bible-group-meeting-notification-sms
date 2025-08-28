@@ -50,9 +50,9 @@ fun checkPhoneNumbers(phoneNumbers: List<String>): Boolean {
 }
 
 fun validatePhoneNumberRegex(phoneNumber: String): Boolean {
-    val phoneNumberPattern = "^\\d$".toRegex()
+    val phoneNumberPattern = "^\d{8}$".toRegex()
 
-    return phoneNumberPattern.matches(phoneNumber) && phoneNumber.length == 8
+    return phoneNumberPattern.matches(phoneNumber)
 }
 
 fun isFutureBibelGroupMeetingNextWeek(bibelGroupMeetingdate: LocalDate): Boolean {
