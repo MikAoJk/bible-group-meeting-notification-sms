@@ -20,12 +20,14 @@ java -version
 #### Building the application
 Need to set an environment variables
 GOOGLE_SHEET_XLSX_URL to current google sheet
-SENDGRID_API_KEY to api key from sendgrip
+AUTH_TOKEN the token for twilio 
+ACCOUNT_SID the account sid from twilio
 PHONENUMBERS_TO_NOTIFY to the phonenumber you want to send to.
 Here is a .bashrc file example:
 ``` shell bash
 export GOOGLE_SHEET_XLSX_URL='https://docs.google.com/spreadsheets/d/12312454123123/export?format=xlsx#gid=0'
-export SENDGRID_API_KEY='supersecretkey'
+export AUTH_TOKEN='supersecretkey'
+export ACCOUNT_SID='supersecretkey'
 export PHONENUMBERS_TO_NOTIFY='47249817,47249817'
 ```
 
