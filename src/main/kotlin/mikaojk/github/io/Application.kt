@@ -1,8 +1,8 @@
 package mikaojk.github.io
 
 import com.twilio.Twilio
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
+import com.twilio.rest.api.v2010.account.Message
+import com.twilio.type.PhoneNumber
 import mikaojk.github.io.model.BibleGroupMeeting
 import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.CellType
@@ -130,39 +130,25 @@ fun Cell.getStringValue(): String {
     }
 }
 
-fun createHtmlContentInStringFormat(bibelgroupmeeting: BibleGroupMeeting): String {
-
-    return "<!DOCTYPE html>" +
-            "<html lang=\"no\">" +
-            "<head>" +
-            "<title>Bibelgruppe den ${bibelgroupmeeting.date.format(dateFormatt)} påminnelse</title>" +
-            "</head>" +
-            "<body>Husk at det er bibelgruppe på onsdag!" +
-            "<ul>" +
-            "<li>Dato: ${bibelgroupmeeting.date.format(dateFormatt)}</li>" +
-            "<li>Hos: ${bibelgroupmeeting.who}</li>" +
-            "<li>Adresse: ${bibelgroupmeeting.address}</li>" +
-            "<li>Kl: 19:30</li>" +
-            "<li>Tema: ${bibelgroupmeeting.theme}</li>" +
-            "</ul>" +
-            "</body>" +
-            "</html>"
-
-}
-
 fun smsNotify(accountSid: String, authToken: String, phoneNumbers: List<String>, bibelgroupmeeting: BibleGroupMeeting) {
 
     Twilio.init(accountSid, authToken)
 
-    val message: Message? = Message
-        .creator(
-            PhoneNumber("+15558675309"),
-            PhoneNumber("+15017250604"),
-            "This is the ship that made the Kessel Run in fourteen parsecs?"
-        )
-        .create()
+    val fromNumber = PhoneNumber("+19018088511")
 
+    for (phoneNumber in phoneNumbers) {
+        val toNumber = PhoneNumber("+47$phoneNumber")
 
-    println(message?.sid)
+        val message: Message? = Message
+            .creator(
+                toNumber,
+                fromNumber,
+                "Bibelgruppe den ${bibelgroupmeeting.date.format(dateFormatt)} påminnelse. Husk at det er bibelgruppe på onsdag! Tema: ${bibelgroupmeeting.theme}, Hos: ${bibelgroupmeeting.who}, Adresse: ${bibelgroupmeeting.address}, Kl: 19:30"
+            )
+            .create()
+
+        log.info("Sent SMS to $phoneNumber")
+        log.info("Message SID: ${message?.sid}")
+    }
 
 }

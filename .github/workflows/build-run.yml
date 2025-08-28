@@ -38,5 +38,5 @@ jobs:
           ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
           AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
           PHONENUMBERS_TO_NOTIFY: ${{ secrets.PHONENUMBERS_TO_NOTIFY }}
-       # run: |
-      #  ./gradlew run
+        run: |
+         ./gradlew run
