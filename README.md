@@ -1,0 +1,44 @@
+# Simple bible group meeting sms notification app
+
+## Technologies used
+* Kotlin
+* Gradle
+* JDK 21
+
+
+## Getting started
+
+### Prerequisites
+Make sure you have the Java JDK 21 installed
+You can check which version you have installed using this command:
+``` bash
+java -version
+```
+
+### Running the application locally
+
+#### Building the application
+Need to set an environment variables
+GOOGLE_SHEET_XLSX_URL to current google sheet
+SENDGRID_API_KEY to api key from sendgrip
+PHONENUMBERS_TO_NOTIFY to the phonenumber you want to send to.
+Here is a .bashrc file example:
+``` shell bash
+export GOOGLE_SHEET_XLSX_URL='https://docs.google.com/spreadsheets/d/12312454123123/export?format=xlsx#gid=0'
+export SENDGRID_API_KEY='supersecretkey'
+export PHONENUMBERS_TO_NOTIFY='47249817,47249817'
+```
+
+To build locally
+``` shell bash
+./gradlew clean build
+```
+
+To run, you can simply run this
+``` shell bash
+./gradlew run
+```
+or on windows 
+```
+gradlew.bat run
+```
