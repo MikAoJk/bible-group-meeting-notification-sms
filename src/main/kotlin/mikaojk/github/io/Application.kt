@@ -31,17 +31,12 @@ fun main() {
     val phoneNumbers: List<String> = environment.phoneNumbers.trim().split(",")
     val allPhoneNumbersAreValid = checkPhoneNumbers(phoneNumbers)
 
-if (allPhoneNumbersAreValid && nearestFutureBibelGroupMeeting != null) {
-        smsNotify(environment.accountSid, environment.authToken, phoneNumbers, nearestFutureBibelGroupMeeting)
-    } else {
-        log.info("No bible group meeting in scheduled")
-}
-    /*
+
     if (allPhoneNumbersAreValid && nearestFutureBibelGroupMeeting != null && isFutureBibelGroupMeetingNextWeek(nearestFutureBibelGroupMeeting.date)) {
         smsNotify(environment.accountSid, environment.authToken, phoneNumbers, nearestFutureBibelGroupMeeting)
     } else {
         log.info("No bible group meeting in scheduled")
-    }*/
+    }
 
 }
 
