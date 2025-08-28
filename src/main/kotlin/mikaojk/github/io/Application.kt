@@ -50,7 +50,7 @@ fun checkPhoneNumbers(phoneNumbers: List<String>): Boolean {
 }
 
 fun validatePhoneNumberRegex(phoneNumber: String): Boolean {
-    val phoneNumberPattern = "^\d{8}$".toRegex()
+    val phoneNumberPattern = "^\\d{8}$".toRegex()
 
     return phoneNumberPattern.matches(phoneNumber)
 }
