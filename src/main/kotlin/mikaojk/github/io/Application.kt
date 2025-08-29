@@ -135,7 +135,7 @@ fun smsNotify(accountSid: String, authToken: String, phoneNumbers: List<String>,
 
     Twilio.init(accountSid, authToken)
 
-    val fromNumber = PhoneNumber("+19018088511")
+    val fromNumber = PhoneNumber("Bibelgruppa")
 
     for (phoneNumber in phoneNumbers) {
         val toNumber = PhoneNumber("+47$phoneNumber")
