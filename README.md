@@ -30,6 +30,7 @@ export AUTH_TOKEN='supersecretkey'
 export ACCOUNT_SID='supersecretkey'
 export PHONENUMBERS_TO_NOTIFY='47249817,47249817'
 ```
+login to https://console.twilio.com/ to find AUTH_TOKEN and ACCOUNT_SID
 
 To build locally
 ``` shell bash
