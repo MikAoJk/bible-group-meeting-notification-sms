@@ -29,9 +29,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/.*gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Test
+        run: |
+          ./gradlew test
       - name: Build
         run: |
-          ./gradlew clean build
+          ./gradlew clean build -x test
       - name: Run
         env:
           GOOGLE_SHEET_XLSX_URL: ${{ secrets.GOOGLE_SHEET_XLSX_URL }}
