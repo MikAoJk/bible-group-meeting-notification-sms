@@ -1,10 +1,13 @@
+group = "mikaojk.github.io"
+version = "0.0.1"
+
 val javaVersion = 21
 
 val logbackVersion= "1.5.18"
 val logstashEncoderVersion = "8.1"
 val poiVersion = "5.4.1"
 val twilioVersion = "10.9.2"
-val junitJupiterVersion = "5.13.4"
+val junitJupiterVersion = "6.0.0"
 
 
 plugins {
@@ -12,8 +15,6 @@ plugins {
     kotlin("jvm") version "2.2.20"
 }
 
-group = "mikaojk.github.io"
-version = "0.0.1"
 
 application {
     mainClass.set("mikaojk.github.io.ApplicationKt")
