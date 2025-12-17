@@ -1,7 +1,7 @@
 group = "mikaojk.github.io"
 version = "0.0.1"
 
-val javaVersion = 21
+val javaVersion = 25
 
 val logbackVersion= "1.5.21"
 val logstashEncoderVersion = "9.0"
@@ -12,7 +12,7 @@ val junitJupiterVersion = "6.0.1"
 
 plugins {
     id("application")
-    kotlin("jvm") version "2.2.21"
+    kotlin("jvm") version "2.3.0"
 }
 
 
