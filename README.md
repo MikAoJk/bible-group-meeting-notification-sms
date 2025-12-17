@@ -3,7 +3,7 @@
 ## Technologies used
 * Kotlin
 * Gradle
-* JDK 21
+* JDK 25
 
 
 ## Getting started
