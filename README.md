@@ -3,13 +3,13 @@
 ## Technologies used
 * Kotlin
 * Gradle
-* JDK 21
+* JDK 25
 
 
 ## Getting started
 
 ### Prerequisites
-Make sure you have the Java JDK 21 installed
+Make sure you have the Java JDK 25 installed
 You can check which version you have installed using this command:
 ``` bash
 java -version
