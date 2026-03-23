@@ -12,7 +12,7 @@ val junitJupiterVersion = "6.0.3"
 
 plugins {
     id("application")
-    kotlin("jvm") version "2.3.10"
+    kotlin("jvm") version "2.3.20"
 }
 
 
