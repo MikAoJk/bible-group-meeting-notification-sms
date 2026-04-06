@@ -6,7 +6,7 @@ val javaVersion = 25
 val logbackVersion= "1.5.32"
 val logstashEncoderVersion = "9.0"
 val poiVersion = "5.5.1"
-val twilioVersion = "11.3.5"
+val twilioVersion = "11.3.6"
 val junitJupiterVersion = "6.0.3"
 
 
