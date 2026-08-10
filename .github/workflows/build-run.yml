@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7.0.1
       - name: Gradle wrapper validation
-        uses: gradle/actions/wrapper-validation@v6.2.0
+        uses: gradle/actions/wrapper-validation@v6.3.0
       - name: Setup gradle dependency cache
         uses: actions/cache@v6.1.0
         with:
